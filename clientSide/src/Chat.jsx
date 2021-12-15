@@ -7,6 +7,7 @@ import {
 	useQuery,
 	gql,
 	useApolloClient,
+	useMutation,
 } from "@apollo/client";
 
 import styles from "./Chat.module.css"; // Import css modules stylesheet as styles
@@ -23,6 +24,12 @@ const GET_MESSAGES = gql`
 			content
 			user
 		}
+	}
+`;
+
+const ADD_MESSAGE = gql`
+	mutation ($user: String!, $content: String!) {
+		postMessage(user: $user, content: $content)
 	}
 `;
 
@@ -70,10 +77,16 @@ const Chat = () => {
 		user: "",
 		content: "",
 	});
+	const [addMessage] = useMutation(ADD_MESSAGE);
+
 	const onSend = (e) => {
-		if (state.content > 0) {
-		}
 		e.preventDefault();
+		if (state.content.length > 0) {
+			console.log("Adding message");
+			addMessage({ variables: state });
+
+		}
+
 		setState({ ...state, content: "" });
 	};
 	return (
@@ -82,7 +95,7 @@ const Chat = () => {
 			<Messages user={state.user} />
 			<form
 				onSubmit={(e) => {
-					onSend(e);
+					onSend;
 				}}
 			>
 				{/* input of username*/}
@@ -102,16 +115,14 @@ const Chat = () => {
 					onChange={(e) => setState({ ...state, content: e.target.value })}
 					onKeyUp={(e) => {
 						if (e.key === "Enter") {
-							onSend();
+							onSend;
 						}
 					}}
 				/>
 				{/* submit(send) button */}
 				<button
 					type="submit"
-					onClick={(e) => {
-						onSend(e);
-					}}
+					onClick={onSend}
 				>
 					<img src="https://img.icons8.com/ios-glyphs/30/000000/sent.png" />
 				</button>
