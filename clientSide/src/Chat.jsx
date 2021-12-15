@@ -43,7 +43,7 @@ const Messages = ({ user }) => {
 							(messageUser == user ? styles.mine : styles.other)
 						}
 					>
-                        {/* style the message depending if its the current user */}
+						{/* style the message depending if its the current user */}
 						<div
 							className={
 								styles["message-text"] +
@@ -66,10 +66,56 @@ const Messages = ({ user }) => {
 };
 
 const Chat = () => {
+	const [state, setState] = React.useState({
+		user: "",
+		content: "",
+	});
+	const onSend = (e) => {
+		if (state.content > 0) {
+		}
+		e.preventDefault();
+		setState({ ...state, content: "" });
+	};
 	return (
 		<div className={styles["chat-container"]}>
 			{/* display chat messages */}
 			<Messages user={state.user} />
+			<form
+				onSubmit={(e) => {
+					onSend(e);
+				}}
+			>
+				{/* input of username*/}
+				<input
+					type="text"
+					className={styles.username}
+					placeholder="UserName"
+					value={state.user}
+					onChange={(e) => setState({ ...state, user: e.target.value })}
+				/>
+				{/* input of message */}
+				<input
+					type="text"
+					placeholder="Message"
+					className={styles.message}
+					value={state.content}
+					onChange={(e) => setState({ ...state, content: e.target.value })}
+					onKeyUp={(e) => {
+						if (e.key === "Enter") {
+							onSend();
+						}
+					}}
+				/>
+				{/* submit(send) button */}
+				<button
+					type="submit"
+					onClick={(e) => {
+						onSend(e);
+					}}
+				>
+					<img src="https://img.icons8.com/ios-glyphs/30/000000/sent.png" />
+				</button>
+			</form>
 		</div>
 	);
 };

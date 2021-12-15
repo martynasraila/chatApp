@@ -4,15 +4,16 @@
     --messageTextColor: rgb(241, 241, 241);
     --myMessageBg: #227ac2;
     --otherMessageBg: hsl(0, 0%, 45%);
+    --borderColor: #00417573;
+    --avatarColor: rgb(179, 179, 179);
+    --avatarBorder: rgb(73, 73, 73);
 }
 
 .chat-container {
     display: flex;
     max-width: 100%;
     flex-direction: column;
-    /* margin: 1rem; */
-    /* width: 50%; */
-    /* border: 1px solid grey; */
+    margin-bottom: 0.5rem;
 
 }
 
@@ -58,7 +59,47 @@
     height: 2rem;
     width: 2rem;
     border-radius: 100%;
-    border: 0.5px solid rgb(73, 73, 73);
+    border: 0.5px solid var(--avatarBorder);
     padding: 0.5rem;
-    background-color: rgb(179, 179, 179);
+    background-color: var(--avatarcolor)
+}
+
+form {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    max-height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    border-top: 1px solid var(--borderColor);
+}
+
+form input {
+    border-radius: 2vw;
+    border: 1px solid var(--borderColor);
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    height: fit-content;
+}
+.message {
+    width: 70%;
+    justify-self: flex-end;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-break: break-all; 
+}
+
+.username {
+    width: 20%;
+}
+
+form button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
 }
