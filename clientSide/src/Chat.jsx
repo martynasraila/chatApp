@@ -84,7 +84,6 @@ const Chat = () => {
 		if (state.content.length > 0) {
 			console.log("Adding message");
 			addMessage({ variables: state });
-
 		}
 
 		setState({ ...state, content: "" });
@@ -120,10 +119,7 @@ const Chat = () => {
 					}}
 				/>
 				{/* submit(send) button */}
-				<button
-					type="submit"
-					onClick={onSend}
-				>
+				<button type="submit" onClick={onSend}>
 					<img src="https://img.icons8.com/ios-glyphs/30/000000/sent.png" />
 				</button>
 			</form>
